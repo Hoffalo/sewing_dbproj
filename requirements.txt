@@ -1,0 +1,4 @@
+Django>=5,<6
+psycopg2-binary
+django-unfold
+python-dotenv
