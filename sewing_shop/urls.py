@@ -1,22 +1,24 @@
-"""
-URL configuration for sewing_shop project.
-
-The `urlpatterns` list routes URLs to views. For more information please see:
-    https://docs.djangoproject.com/en/5.2/topics/http/urls/
-Examples:
-Function views
-    1. Add an import:  from my_app import views
-    2. Add a URL to urlpatterns:  path('', views.home, name='home')
-Class-based views
-    1. Add an import:  from other_app.views import Home
-    2. Add a URL to urlpatterns:  path('', Home.as_view(), name='home')
-Including another URLconf
-    1. Import the include() function: from django.urls import include, path
-    2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
-"""
 from django.contrib import admin
-from django.urls import path
+from django.urls import include, path
+from django.views.generic import RedirectView
+
+from apps.production import views as production_views
+from sewing_shop import views as sewing_views
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
+    path("", RedirectView.as_view(url="/admin/", query_string=True)),
+    # Django's i18n view (POST `/i18n/setlang/`) — name must be ``set_language`` for Unfold's language form.
+    path("i18n/", include("django.conf.urls.i18n")),
+    path("admin/", admin.site.urls),
+    path(
+        "admin/production/ticket/<int:ticket_id>/pdf/",
+        admin.site.admin_view(production_views.ticket_pdf),
+        name="production_ticket_pdf",
+    ),
+    # GET language switcher for ``SITE_DROPDOWN`` (do not reuse name ``set_language``).
+    path(
+        "set-language/<str:language>/",
+        sewing_views.switch_language,
+        name="switch_language",
+    ),
 ]

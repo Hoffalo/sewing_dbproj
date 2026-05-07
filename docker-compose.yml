@@ -22,6 +22,9 @@ services:
       - .:/app
     ports:
       - "8000:8000"
+    environment:
+      # Overrides `.env` so the app container resolves the Postgres service name.
+      POSTGRES_HOST: db
     env_file:
       - .env
     depends_on:

@@ -1,4 +1,9 @@
-Django>=5,<6
-psycopg2-binary
-django-unfold
-python-dotenv
+Django==5.2.14
+django-unfold==0.91.0
+# psycopg v3 has pre-built wheels for newer Python (e.g. 3.14); psycopg2 often falls back to source builds.
+psycopg[binary]==3.2.13
+python-dotenv==1.1.1
+django-extensions==4.1
+pydot==3.0.4
+pyparsing==3.2.3
+reportlab==4.4.2
