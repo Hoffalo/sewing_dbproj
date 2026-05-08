@@ -12,7 +12,6 @@ from django.shortcuts import get_object_or_404
 from django.utils import timezone
 from rest_framework import status, viewsets
 from rest_framework.decorators import action
-from rest_framework.exceptions import ValidationError
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 from rest_framework.views import APIView
@@ -49,14 +48,21 @@ class CustomerViewSet(viewsets.ModelViewSet):
             )
         return qs
 
-    def perform_destroy(self, instance):
+    def destroy(self, request, *args, **kwargs):
+        instance = self.get_object()
         try:
             instance.delete()
         except ProtectedError:
-            raise ValidationError(
-                "Cannot delete this client — they still have orders. "
-                "Delete or reassign their orders first."
+            return Response(
+                {
+                    "detail": (
+                        "Cannot delete this client — they still have orders. "
+                        "Delete their orders first."
+                    )
+                },
+                status=status.HTTP_400_BAD_REQUEST,
             )
+        return Response(status=status.HTTP_204_NO_CONTENT)
 
 
 class OrderViewSet(viewsets.ModelViewSet):

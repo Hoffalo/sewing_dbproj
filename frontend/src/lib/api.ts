@@ -49,14 +49,32 @@ async function request<T>(
   else payload = await res.text();
 
   if (!res.ok) {
-    const detail =
-      (payload && typeof payload === "object" && "detail" in payload
-        ? (payload as { detail: string }).detail
-        : null) ?? `HTTP ${res.status}`;
-    throw new ApiError(res.status, detail, payload);
+    throw new ApiError(res.status, extractDetail(payload, res.status), payload);
   }
 
   return payload as T;
+}
+
+function extractDetail(payload: unknown, status: number): string {
+  if (typeof payload === "string" && payload.trim()) return payload;
+  if (Array.isArray(payload) && payload.length) {
+    return payload.map(String).join("; ");
+  }
+  if (payload && typeof payload === "object") {
+    const obj = payload as Record<string, unknown>;
+    if (typeof obj.detail === "string") return obj.detail;
+    if (Array.isArray(obj.detail) && obj.detail.length) {
+      return obj.detail.map(String).join("; ");
+    }
+    // DRF field validation errors: { field: ["msg", ...] }
+    const messages: string[] = [];
+    for (const [k, v] of Object.entries(obj)) {
+      if (Array.isArray(v) && v.length) messages.push(`${k}: ${v.map(String).join(", ")}`);
+      else if (typeof v === "string") messages.push(`${k}: ${v}`);
+    }
+    if (messages.length) return messages.join(" · ");
+  }
+  return `HTTP ${status}`;
 }
 
 export const api = {

@@ -38,24 +38,30 @@ def validate_crm_transition(order: Order, target: str, user) -> tuple[bool, str 
     if isinstance(user, AnonymousUser) or not user.is_authenticated:
         return False, _("Authentication required.")
 
-    if order.status == Order.Status.DELIVERED.value:
-        return False, _("Cannot change a delivered order.")
-
     if target == order.status:
         return True, None
 
+    # Reverting a delivered order is a correction — require Owner/Manager.
+    if order.status == Order.Status.DELIVERED.value:
+        if not is_owner_or_manager(user):
+            return False, _("Only owner or manager can change a delivered order.")
+        return True, None
+
+    # Marking complete from any non-delivered state — open to all roles.
     if target == Order.Status.DELIVERED.value:
-        return False, _("Use “Mark as delivered…” to complete an order.")
+        return True, None
 
     if target == Order.Status.CANCELLED.value:
-        if order.status == Order.Status.DELIVERED.value:
-            return False, _("Cannot cancel a delivered order.")
         if not is_owner_or_manager(user):
             return False, _("Only owner or manager can cancel.")
         return True, None
 
+    # Otherwise the move must stay inside the regular pipeline.
     if target not in ORDER_PIPELINE or order.status not in ORDER_PIPELINE:
-        return False, _("Invalid CRM move.")
+        # Off-pipeline source (e.g. CANCELLED) can be reopened by Owner/Manager.
+        if not is_owner_or_manager(user):
+            return False, _("Invalid CRM move.")
+        return True, None
 
     old_i = pipeline_index(order.status)
     new_i = pipeline_index(target)
