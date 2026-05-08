@@ -1,7 +1,7 @@
 PYTHON ?= python3
 MANAGE ?= $(PYTHON) manage.py
 
-.PHONY: up down migrate seed erd messages compile messages-compile black ruff
+.PHONY: up down migrate seed erd messages compile messages-compile black ruff front front-install
 
 up:
 	docker compose up --build
@@ -32,3 +32,9 @@ black:
 
 ruff:
 	ruff check .
+
+front-install:
+	cd frontend && npm install
+
+front:
+	cd frontend && npm run dev

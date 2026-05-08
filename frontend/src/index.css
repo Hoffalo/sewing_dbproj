@@ -1,0 +1,83 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --bg: #ffffff;
+  --surface: #faf9ff;
+  --lavender-50: #f5f1ff;
+  --lavender-100: #ebe2ff;
+  --lavender-200: #d8c7ff;
+  --lavender-300: #c5b3ff;
+  --lavender-400: #a98aff;
+  --lavender-500: #8b6df0;
+  --lavender-600: #7857d6;
+  --lavender-700: #5d3fbf;
+  --ink: #1a1530;
+  --ink-soft: #5b5670;
+
+  color-scheme: light;
+}
+
+html, body, #root {
+  height: 100%;
+}
+
+body {
+  background: var(--bg);
+  color: var(--ink);
+  font-family: "Inter", system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  font-feature-settings: "cv11", "ss01";
+}
+
+/* Soft, fragrant background — subtle lavender bloom in the corners */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: -1;
+  background:
+    radial-gradient(60vw 60vw at 0% 0%, rgba(168, 138, 255, 0.10), transparent 60%),
+    radial-gradient(50vw 50vw at 100% 100%, rgba(197, 179, 255, 0.10), transparent 60%);
+}
+
+@layer components {
+  .card {
+    @apply bg-white rounded-2xl border border-lavender-100 shadow-soft;
+  }
+  .card-hover {
+    @apply transition-shadow duration-300 hover:shadow-glow;
+  }
+  .pill {
+    @apply inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-medium;
+  }
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 px-4 py-2 rounded-xl text-sm font-medium transition-all duration-200;
+  }
+  .btn-primary {
+    background-image: linear-gradient(135deg, var(--lavender-500), var(--lavender-700));
+    @apply text-white shadow-soft hover:shadow-glow active:scale-[0.98];
+  }
+  .btn-ghost {
+    @apply text-ink-soft hover:bg-lavender-50 hover:text-ink;
+  }
+  .input {
+    @apply w-full px-3.5 py-2.5 bg-white rounded-xl border border-lavender-100 text-sm text-ink placeholder:text-ink-soft focus:outline-none focus:ring-2 focus:ring-lavender-300 focus:border-lavender-300 transition;
+  }
+  .label {
+    @apply block text-xs font-semibold text-ink-soft uppercase tracking-wide mb-1.5;
+  }
+}
+
+/* Custom scrollbars */
+*::-webkit-scrollbar { width: 10px; height: 10px; }
+*::-webkit-scrollbar-track { background: transparent; }
+*::-webkit-scrollbar-thumb {
+  background: var(--lavender-100);
+  border-radius: 8px;
+  border: 2px solid transparent;
+  background-clip: padding-box;
+}
+*::-webkit-scrollbar-thumb:hover { background: var(--lavender-300); background-clip: padding-box; border: 2px solid transparent; }

@@ -1,12 +1,7 @@
-"""
-Staff PDF export for workshop tickets (ReportLab — pure Python, container-friendly).
-"""
+"""Workshop ticket PDF builder (ReportLab — pure Python, container-friendly)."""
 
 from io import BytesIO
 
-from django.contrib.admin.views.decorators import staff_member_required
-from django.http import FileResponse
-from django.shortcuts import get_object_or_404
 from django.utils import timezone
 from django.utils.translation import gettext as _
 from reportlab.lib import colors
@@ -19,18 +14,20 @@ from apps.orders.money import format_money
 from apps.production.models import Ticket
 
 
-@staff_member_required
-def ticket_pdf(request, ticket_id: int):
-    ticket = get_object_or_404(
+def build_ticket_pdf(ticket: Ticket) -> BytesIO:
+    """Render the ticket as a PDF and return a seekable in-memory buffer."""
+
+    ticket = (
         Ticket.objects.select_related(
             "current_stage",
             "assigned_to__user",
             "order_item__order__customer",
-        ).prefetch_related(
+        )
+        .prefetch_related(
             "order_item__measurements",
             "order_item__material_links__material",
-        ),
-        pk=ticket_id,
+        )
+        .get(pk=ticket.pk)
     )
     oi = ticket.order_item
     order = oi.order
@@ -49,15 +46,25 @@ def ticket_pdf(request, ticket_id: int):
     title_style = ParagraphStyle(
         name="TitleCL",
         parent=styles["Title"],
-        textColor=colors.HexColor("#C84B31"),
+        textColor=colors.HexColor("#8B6DF0"),
         spaceAfter=12,
     )
     story = []
 
     story.append(Paragraph("Costuras Lucía", title_style))
-    story.append(Paragraph("Costuras Lucía — " + timezone.now().strftime("%Y-%m-%d %H:%M"), styles["Normal"]))
+    story.append(
+        Paragraph(
+            "Costuras Lucía — " + timezone.now().strftime("%Y-%m-%d %H:%M"),
+            styles["Normal"],
+        )
+    )
     story.append(Spacer(1, 0.4 * cm))
-    story.append(Paragraph(f"<b>{ticket.code}</b> &nbsp;|&nbsp; Etapa: {ticket.current_stage.name}", styles["Heading3"]))
+    story.append(
+        Paragraph(
+            f"<b>{ticket.code}</b> &nbsp;|&nbsp; Etapa: {ticket.current_stage.name}",
+            styles["Heading3"],
+        )
+    )
     story.append(Spacer(1, 0.3 * cm))
 
     line_total = oi.quantity * oi.unit_price
@@ -81,7 +88,7 @@ def ticket_pdf(request, ticket_id: int):
     t1.setStyle(
         TableStyle(
             [
-                ("BACKGROUND", (0, 0), (0, -1), colors.HexColor("#fdf6f4")),
+                ("BACKGROUND", (0, 0), (0, -1), colors.HexColor("#f5f1ff")),
                 ("GRID", (0, 0), (-1, -1), 0.25, colors.grey),
                 ("VALIGN", (0, 0), (-1, -1), "TOP"),
             ]
@@ -95,7 +102,14 @@ def ticket_pdf(request, ticket_id: int):
     for m in oi.measurements.all().order_by("name"):
         meas_data.append([m.get_name_display(), str(m.value_cm), m.notes or ""])
     t2 = Table(meas_data, colWidths=[4 * cm, 3 * cm, 9 * cm])
-    t2.setStyle(TableStyle([("GRID", (0, 0), (-1, -1), 0.25, colors.grey), ("BACKGROUND", (0, 0), (-1, 0), colors.beige)]))
+    t2.setStyle(
+        TableStyle(
+            [
+                ("GRID", (0, 0), (-1, -1), 0.25, colors.grey),
+                ("BACKGROUND", (0, 0), (-1, 0), colors.HexColor("#ebe2ff")),
+            ]
+        )
+    )
     story.append(t2)
     story.append(Spacer(1, 0.4 * cm))
 
@@ -115,11 +129,12 @@ def ticket_pdf(request, ticket_id: int):
     if ticket.assigned_to:
         story.append(
             Paragraph(
-                f"<b>Asignado a:</b> {ticket.assigned_to.user.get_full_name() or ticket.assigned_to.user.get_username()}",
+                f"<b>Asignado a:</b> "
+                f"{ticket.assigned_to.user.get_full_name() or ticket.assigned_to.user.get_username()}",
                 styles["Normal"],
             )
         )
 
     doc.build(story)
     buf.seek(0)
-    return FileResponse(buf, as_attachment=True, filename=f"{ticket.code}.pdf")
+    return buf
