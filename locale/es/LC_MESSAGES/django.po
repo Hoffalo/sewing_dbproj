@@ -1,0 +1,608 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-05-07 10:57-0500\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=n == 1 ? 0 : n != 0 && n % 1000000 == 0 ? "
+"1 : 2;\n"
+#: apps/customers/admin.py:16
+msgid "Identity"
+msgstr ""
+
+#: apps/customers/admin.py:17 apps/customers/models.py:29
+msgid "Address"
+msgstr ""
+
+#: apps/customers/admin.py:18 apps/customers/models.py:32
+#: apps/orders/admin.py:85 apps/orders/models.py:63 apps/orders/models.py:162
+msgid "Notes"
+msgstr ""
+
+#: apps/customers/admin.py:19 apps/orders/admin.py:86
+#: apps/production/admin.py:64
+msgid "Audit"
+msgstr ""
+
+#: apps/customers/apps.py:8 apps/customers/models.py:40
+#: sewing_shop/settings.py:132
+msgid "Customers"
+msgstr ""
+
+#: apps/customers/models.py:15
+msgid "First name"
+msgstr ""
+
+#: apps/customers/models.py:19
+msgid "Last name"
+msgstr ""
+
+#: apps/customers/models.py:25
+msgid "Phone"
+msgstr ""
+
+#: apps/customers/models.py:26
+msgid "Primary contact key for walk-in clients."
+msgstr ""
+
+#: apps/customers/models.py:28
+msgid "Email"
+msgstr ""
+
+#: apps/customers/models.py:33
+msgid "Preferences, fabric allergies, etc."
+msgstr ""
+
+#: apps/customers/models.py:35 apps/orders/models.py:64
+#: apps/production/models.py:113
+msgid "Created at"
+msgstr ""
+
+#: apps/customers/models.py:36 apps/orders/models.py:65
+#: apps/production/models.py:114
+msgid "Updated at"
+msgstr ""
+
+#: apps/customers/models.py:39 apps/orders/models.py:42
+#: templates/admin/index.html:49
+msgid "Customer"
+msgstr ""
+
+#: apps/orders/admin.py:42 apps/production/models.py:218
+msgid "Received by"
+msgstr ""
+
+#: apps/orders/admin.py:45 apps/production/models.py:224
+msgid "Delivered by"
+msgstr ""
+
+#: apps/orders/admin.py:48 apps/production/models.py:226
+msgid "Final observations"
+msgstr ""
+
+#: apps/orders/admin.py:84 apps/orders/models.py:68 apps/orders/models.py:101
+#: apps/production/models.py:215 templates/admin/index.html:48
+msgid "Order"
+msgstr ""
+
+#: apps/orders/admin.py:89 apps/orders/models.py:55
+#: templates/admin/index.html:51
+msgid "Status"
+msgstr ""
+
+#: apps/orders/admin.py:122
+msgid "Generate tickets (RECEIVED) for selected orders"
+msgstr ""
+
+#: apps/orders/admin.py:128
+msgid "Missing RECEIVED stage — run migrations."
+msgstr ""
+
+#: apps/orders/admin.py:147
+msgid "Ticket opened from admin."
+msgstr ""
+
+#: apps/orders/admin.py:150
+#, python-format
+msgid "Created %(n)s ticket(s)."
+msgstr ""
+
+#: apps/orders/admin.py:152
+msgid "Mark as delivered…"
+msgstr ""
+
+#: apps/orders/admin.py:155
+msgid "Select exactly one order."
+msgstr ""
+
+#: apps/orders/admin.py:167
+msgid "This order already has a delivery record."
+msgstr ""
+
+#: apps/orders/admin.py:179
+msgid "Delivery recorded."
+msgstr ""
+
+#: apps/orders/admin.py:185 templates/admin/orders/deliver_intermediate.html:10
+#: templates/admin/orders/deliver_intermediate.html:15
+msgid "Record delivery"
+msgstr ""
+
+#: apps/orders/models.py:31
+msgid "Pending"
+msgstr ""
+
+#: apps/orders/models.py:32 templates/admin/index.html:18
+msgid "In production"
+msgstr ""
+
+#: apps/orders/models.py:33
+msgid "Ready"
+msgstr ""
+
+#: apps/orders/models.py:34
+msgid "Delivered"
+msgstr ""
+
+#: apps/orders/models.py:35
+msgid "Cancelled"
+msgstr ""
+
+#: apps/orders/models.py:47
+msgid "Order date"
+msgstr ""
+
+#: apps/orders/models.py:49 templates/admin/index.html:50
+msgid "Due date"
+msgstr ""
+
+#: apps/orders/models.py:61
+msgid "Total price"
+msgstr ""
+
+#: apps/orders/models.py:69 sewing_shop/settings.py:136
+#: sewing_shop/settings.py:139
+msgid "Orders"
+msgstr ""
+
+#: apps/orders/models.py:81
+msgid "(unsaved order)"
+msgstr ""
+
+#: apps/orders/models.py:88
+msgid "Dress"
+msgstr ""
+
+#: apps/orders/models.py:89
+msgid "Suit"
+msgstr ""
+
+#: apps/orders/models.py:90
+msgid "Shirt"
+msgstr ""
+
+#: apps/orders/models.py:91
+msgid "Pants"
+msgstr ""
+
+#: apps/orders/models.py:92
+msgid "Skirt"
+msgstr ""
+
+#: apps/orders/models.py:93
+msgid "Alteration"
+msgstr ""
+
+#: apps/orders/models.py:94 apps/orders/models.py:147
+msgid "Other"
+msgstr ""
+
+#: apps/orders/models.py:106
+msgid "Garment type"
+msgstr ""
+
+#: apps/orders/models.py:108
+msgid "Description"
+msgstr ""
+
+#: apps/orders/models.py:109
+msgid "Fabric"
+msgstr ""
+
+#: apps/orders/models.py:110
+msgid "Color"
+msgstr ""
+
+#: apps/orders/models.py:111
+msgid "Quantity"
+msgstr ""
+
+#: apps/orders/models.py:115
+msgid "Unit price"
+msgstr ""
+
+#: apps/orders/models.py:117
+msgid "Design notes"
+msgstr ""
+
+#: apps/orders/models.py:118
+msgid "Position"
+msgstr ""
+
+#: apps/orders/models.py:121 apps/orders/models.py:154
+#: apps/orders/models.py:222 apps/production/models.py:84
+msgid "Order line"
+msgstr ""
+
+#: apps/orders/models.py:122
+msgid "Order lines"
+msgstr ""
+
+#: apps/orders/models.py:139
+msgid "Bust"
+msgstr ""
+
+#: apps/orders/models.py:140
+msgid "Waist"
+msgstr ""
+
+#: apps/orders/models.py:141
+msgid "Hips"
+msgstr ""
+
+#: apps/orders/models.py:142
+msgid "Inseam"
+msgstr ""
+
+#: apps/orders/models.py:143
+msgid "Sleeve"
+msgstr ""
+
+#: apps/orders/models.py:144
+msgid "Shoulder"
+msgstr ""
+
+#: apps/orders/models.py:145
+msgid "Neck"
+msgstr ""
+
+#: apps/orders/models.py:146
+msgid "Length"
+msgstr ""
+
+#: apps/orders/models.py:156 apps/orders/models.py:165
+msgid "Measurement"
+msgstr ""
+
+#: apps/orders/models.py:160
+msgid "Value (cm)"
+msgstr ""
+
+#: apps/orders/models.py:166
+msgid "Measurements"
+msgstr ""
+
+#: apps/orders/models.py:182
+msgid "Meter"
+msgstr ""
+
+#: apps/orders/models.py:183 apps/orders/models.py:188
+msgid "Unit"
+msgstr ""
+
+#: apps/orders/models.py:184
+msgid "Gram"
+msgstr ""
+
+#: apps/orders/models.py:185
+msgid "Spool"
+msgstr ""
+
+#: apps/orders/models.py:187 apps/production/models.py:57
+msgid "Name"
+msgstr ""
+
+#: apps/orders/models.py:192
+msgid "Stock quantity"
+msgstr ""
+
+#: apps/orders/models.py:197
+msgid "Cost per unit"
+msgstr ""
+
+#: apps/orders/models.py:201 apps/orders/models.py:229
+msgid "Material"
+msgstr ""
+
+#: apps/orders/models.py:202 sewing_shop/settings.py:140
+msgid "Materials"
+msgstr ""
+
+#: apps/orders/models.py:234
+msgid "Quantity used"
+msgstr ""
+
+#: apps/orders/models.py:238
+msgid "Line material"
+msgstr ""
+
+#: apps/orders/models.py:239
+msgid "Line materials"
+msgstr ""
+
+#: apps/production/admin.py:63
+msgid "Work ticket"
+msgstr ""
+
+#: apps/production/admin.py:75 apps/production/admin.py:78
+#: apps/production/admin.py:82
+msgid "Print ticket"
+msgstr ""
+
+#: apps/production/admin.py:118
+msgid "Advance stage / Avanzar etapa"
+msgstr ""
+
+#: apps/production/admin.py:141
+msgid "Advanced via admin action."
+msgstr ""
+
+#: apps/production/admin.py:144
+#, python-format
+msgid "Updated %(n)s ticket(s)."
+msgstr ""
+
+#: apps/production/models.py:23
+msgid "Owner"
+msgstr ""
+
+#: apps/production/models.py:24
+msgid "Manager"
+msgstr ""
+
+#: apps/production/models.py:25
+msgid "Tailor"
+msgstr ""
+
+#: apps/production/models.py:26
+msgid "Staff"
+msgstr ""
+
+#: apps/production/models.py:33
+msgid "User"
+msgstr ""
+
+#: apps/production/models.py:35
+msgid "Role"
+msgstr ""
+
+#: apps/production/models.py:36
+msgid "Hired on"
+msgstr ""
+
+#: apps/production/models.py:37
+msgid "Active"
+msgstr ""
+
+#: apps/production/models.py:40
+msgid "Employee"
+msgstr ""
+
+#: apps/production/models.py:41 sewing_shop/settings.py:147
+msgid "Employees"
+msgstr ""
+
+#: apps/production/models.py:58
+msgid "Sequence"
+msgstr ""
+
+#: apps/production/models.py:59
+msgid "Is terminal"
+msgstr ""
+
+#: apps/production/models.py:62
+msgid "Production stage"
+msgstr ""
+
+#: apps/production/models.py:63
+msgid "Production stages"
+msgstr ""
+
+#: apps/production/models.py:74
+msgid "Low"
+msgstr ""
+
+#: apps/production/models.py:75
+msgid "Normal"
+msgstr ""
+
+#: apps/production/models.py:76
+msgid "High"
+msgstr ""
+
+#: apps/production/models.py:77
+msgid "Urgent"
+msgstr ""
+
+#: apps/production/models.py:86
+msgid "Code"
+msgstr ""
+
+#: apps/production/models.py:92
+msgid "Current stage"
+msgstr ""
+
+#: apps/production/models.py:94
+msgid ""
+"Denormalized from latest StatusHistory for fast filtering; kept in sync via "
+"signals."
+msgstr ""
+
+#: apps/production/models.py:104
+msgid "Assigned to"
+msgstr ""
+
+#: apps/production/models.py:110
+msgid "Priority"
+msgstr ""
+
+#: apps/production/models.py:112
+msgid "Deadline"
+msgstr ""
+
+#: apps/production/models.py:117 apps/production/models.py:153
+msgid "Ticket"
+msgstr ""
+
+#: apps/production/models.py:118 sewing_shop/settings.py:149
+msgid "Tickets"
+msgstr ""
+
+#: apps/production/models.py:160
+msgid "Stage"
+msgstr ""
+
+#: apps/production/models.py:167
+msgid "Changed by"
+msgstr ""
+
+#: apps/production/models.py:169
+msgid "Changed at"
+msgstr ""
+
+#: apps/production/models.py:170
+msgid "Comment"
+msgstr ""
+
+#: apps/production/models.py:173
+msgid "Allow backward move"
+msgstr ""
+
+#: apps/production/models.py:174
+msgid "Supervisor override to move to an earlier sequence."
+msgstr ""
+
+#: apps/production/models.py:178 apps/production/models.py:179
+#: sewing_shop/settings.py:150
+msgid "Status history"
+msgstr ""
+
+#: apps/production/models.py:197
+msgid "Stage sequence may not go backwards without the override flag."
+msgstr ""
+
+#: apps/production/models.py:202
+msgid "Status history is append-only and cannot be updated."
+msgstr ""
+
+#: apps/production/models.py:217
+msgid "Delivered at"
+msgstr ""
+
+#: apps/production/models.py:229
+msgid "Delivery"
+msgstr ""
+
+#: apps/production/models.py:230 sewing_shop/settings.py:151
+msgid "Deliveries"
+msgstr ""
+
+#: sewing_shop/roles.py:45
+msgid "No employee profile linked to this user."
+msgstr ""
+
+#: sewing_shop/settings.py:96
+msgid "Spanish"
+msgstr ""
+
+#: sewing_shop/settings.py:97
+msgid "English"
+msgstr ""
+
+#: sewing_shop/settings.py:121
+msgid "Costuras Lucía"
+msgstr ""
+
+#: sewing_shop/settings.py:122
+msgid "Sewing shop management"
+msgstr ""
+
+#: sewing_shop/settings.py:129
+msgid "Clients"
+msgstr ""
+
+#: sewing_shop/settings.py:144
+msgid "Production"
+msgstr ""
+
+#: sewing_shop/settings.py:148
+msgid "Stages"
+msgstr ""
+
+#: sewing_shop/settings.py:155
+msgid "Reports"
+msgstr ""
+
+#: sewing_shop/settings.py:159
+msgid "Admin dashboard"
+msgstr ""
+
+#: sewing_shop/settings.py:185
+msgid "Language"
+msgstr ""
+
+#: templates/admin/index.html:4
+msgid "Django site admin"
+msgstr ""
+
+#: templates/admin/index.html:14
+msgid "Pending orders"
+msgstr ""
+
+#: templates/admin/index.html:22
+msgid "Overdue"
+msgstr ""
+
+#: templates/admin/index.html:26
+msgid "Delivered this month"
+msgstr ""
+
+#: templates/admin/index.html:33
+msgid "Orders by status (last 30 days)"
+msgstr ""
+
+#: templates/admin/index.html:37
+msgid "Tickets by production stage"
+msgstr ""
+
+#: templates/admin/index.html:43
+msgid "Five most overdue orders"
+msgstr ""
+
+#: templates/admin/index.html:63
+msgid "No overdue orders."
+msgstr ""
+
+#: templates/admin/orders/deliver_intermediate.html:6
+msgid "Home"
+msgstr ""
+
+#: templates/admin/orders/deliver_intermediate.html:23
+msgid "Save delivery"
+msgstr ""
+
+#: templates/admin/orders/deliver_intermediate.html:26
+msgid "Cancel"
+msgstr ""

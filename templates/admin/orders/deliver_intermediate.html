@@ -1,0 +1,30 @@
+{% extends "admin/base.html" %}
+{% load i18n %}
+
+{% block breadcrumbs %}
+<div class="px-4 py-2 text-sm text-font-subtle-light dark:text-font-subtle-dark">
+  <a href="{% url 'admin:index' %}">{% trans "Home" %}</a>
+  &rsaquo;
+  <a href="{% url 'admin:orders_order_changelist' %}">{{ opts.verbose_name_plural|capfirst }}</a>
+  &rsaquo;
+  {% trans "Record delivery" %}
+</div>
+{% endblock %}
+
+{% block content %}
+<h1 class="mb-4 text-lg font-semibold">{% trans "Record delivery" %} — #{{ order.pk }}</h1>
+<p class="mb-4 text-sm text-font-subtle-light dark:text-font-subtle-dark">{{ order.customer }}</p>
+
+<form method="post" class="space-y-4">
+  {% csrf_token %}
+  {{ form.as_p }}
+  <div class="flex gap-2">
+    <button type="submit" class="rounded-md bg-primary-600 px-3 py-2 text-sm font-semibold text-white hover:bg-primary-700">
+      {% trans "Save delivery" %}
+    </button>
+    <a class="rounded-md border border-base-200 px-3 py-2 text-sm dark:border-base-800" href="{% url 'admin:orders_order_change' order.pk %}">
+      {% trans "Cancel" %}
+    </a>
+  </div>
+</form>
+{% endblock %}

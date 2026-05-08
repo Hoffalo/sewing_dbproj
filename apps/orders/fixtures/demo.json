@@ -1,0 +1,12 @@
+[
+  {
+    "model": "orders.material",
+    "pk": 9001,
+    "fields": {
+      "name": "Tela demo fixture",
+      "unit": "METER",
+      "stock_quantity": "10.00",
+      "cost_per_unit": "5.00"
+    }
+  }
+]
