@@ -8,59 +8,103 @@
 {% endblock %}
 
 {% block content %}
-<div class="mb-8 flex flex-col gap-6">
-  <div class="grid gap-4 md:grid-cols-2 xl:grid-cols-4">
-    <div class="rounded-lg border border-base-200 bg-white p-4 shadow-sm dark:border-base-800 dark:bg-base-900">
-      <p class="text-sm text-font-subtle-light dark:text-font-subtle-dark">{% trans "Pending orders" %}</p>
-      <p class="text-3xl font-semibold text-primary-600">{{ dashboard_metrics.pending }}</p>
+<div class="mb-10 flex flex-col gap-8">
+  <div>
+    <h2 class="text-lg font-semibold tracking-tight text-font-important-light dark:text-font-important-dark">
+      {% trans "Dashboard" %}
+    </h2>
+    <p class="mt-1 text-sm text-font-subtle-light dark:text-font-subtle-dark">
+      {% trans "Operational snapshot — click a tile to open the filtered list in admin." %}
+    </p>
+  </div>
+
+  <div class="grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
+    {% for card in kpi_cards %}
+    <a href="{{ card.url }}"
+       class="group flex flex-col rounded-xl border border-base-200 bg-white p-5 shadow-sm transition hover:-translate-y-0.5 hover:shadow-md dark:border-base-800 dark:bg-base-900">
+      <div class="flex items-center justify-between gap-2">
+        <span class="material-symbols-outlined text-2xl text-primary-600 dark:text-primary-400">{{ card.icon }}</span>
+        <span class="text-xs font-semibold uppercase tracking-wide text-font-subtle-light dark:text-font-subtle-dark">
+          {{ card.title }}
+        </span>
+      </div>
+      <p class="dashboard-tile-value mt-3 text-primary-700 dark:text-primary-200">{{ card.value }}</p>
+    </a>
+    {% endfor %}
+  </div>
+
+  {% if revenue_cards %}
+  <div>
+    <h3 class="text-base font-semibold text-font-important-light dark:text-font-important-dark">
+      {% trans "Revenue this month (delivered)" %}
+    </h3>
+    <p class="mt-1 text-sm text-font-subtle-light dark:text-font-subtle-dark">
+      {% trans "Shown per currency — never mixed across FX." %}
+    </p>
+    <div class="mt-4 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+      {% for r in revenue_cards %}
+      <div class="rounded-xl border border-base-200 bg-white p-4 dark:border-base-800 dark:bg-base-900">
+        <p class="dashboard-tile-label">{{ r.label }}</p>
+        <p class="dashboard-tile-value mt-1 text-green-800 dark:text-green-200">{{ r.amount }}</p>
+        <p class="mt-1 text-xs text-font-subtle-light dark:text-font-subtle-dark">{{ r.currency }}</p>
+      </div>
+      {% endfor %}
     </div>
-    <div class="rounded-lg border border-base-200 bg-white p-4 shadow-sm dark:border-base-800 dark:bg-base-900">
-      <p class="text-sm text-font-subtle-light dark:text-font-subtle-dark">{% trans "In production" %}</p>
-      <p class="text-3xl font-semibold text-primary-600">{{ dashboard_metrics.in_production }}</p>
-    </div>
-    <div class="rounded-lg border border-base-200 bg-white p-4 shadow-sm dark:border-base-800 dark:bg-base-900">
-      <p class="text-sm text-font-subtle-light dark:text-font-subtle-dark">{% trans "Overdue" %}</p>
-      <p class="text-3xl font-semibold text-red-600">{{ dashboard_metrics.overdue }}</p>
-    </div>
-    <div class="rounded-lg border border-base-200 bg-white p-4 shadow-sm dark:border-base-800 dark:bg-base-900">
-      <p class="text-sm text-font-subtle-light dark:text-font-subtle-dark">{% trans "Delivered this month" %}</p>
-      <p class="text-3xl font-semibold text-primary-600">{{ dashboard_metrics.delivered_month }}</p>
+  </div>
+  {% endif %}
+
+  <div class="rounded-xl border border-base-200 bg-white p-5 dark:border-base-800 dark:bg-base-900">
+    <h3 class="text-base font-semibold text-font-important-light dark:text-font-important-dark">
+      {% trans "Tickets by production stage" %}
+    </h3>
+    <p class="mt-1 text-sm text-font-subtle-light dark:text-font-subtle-dark">
+      {% trans "Workload across the tailoring pipeline." %}
+    </p>
+    <div class="mt-4 flex justify-center">
+      <div class="relative h-40 max-h-[10rem] w-full max-w-sm sm:h-44 sm:max-h-[11rem] sm:max-w-md">
+        <canvas id="stageChart" class="block max-h-full max-w-full" aria-label="{% trans 'Tickets by stage chart' %}"></canvas>
+      </div>
     </div>
   </div>
 
-  <div class="grid gap-6 xl:grid-cols-2">
-    <div class="rounded-lg border border-base-200 bg-white p-4 shadow-sm dark:border-base-800 dark:bg-base-900">
-      <h3 class="mb-4 text-base font-semibold">{% trans "Orders by status (last 30 days)" %}</h3>
-      <canvas id="ordersChart" height="220"></canvas>
-    </div>
-    <div class="rounded-lg border border-base-200 bg-white p-4 shadow-sm dark:border-base-800 dark:bg-base-900">
-      <h3 class="mb-4 text-base font-semibold">{% trans "Tickets by production stage" %}</h3>
-      <canvas id="ticketsChart" height="220"></canvas>
-    </div>
-  </div>
-
-  <div class="rounded-lg border border-base-200 bg-white p-4 shadow-sm dark:border-base-800 dark:bg-base-900">
-    <h3 class="mb-4 text-base font-semibold">{% trans "Five most overdue orders" %}</h3>
-    <div class="overflow-x-auto">
+  <div class="rounded-xl border border-base-200 bg-white p-5 dark:border-base-800 dark:bg-base-900">
+    <h3 class="text-base font-semibold text-font-important-light dark:text-font-important-dark">
+      {% trans "Five most overdue orders" %}
+    </h3>
+    <div class="mt-4 overflow-x-auto">
       <table class="min-w-full text-sm">
         <thead>
           <tr class="border-b border-base-200 text-left dark:border-base-800">
             <th class="py-2 pr-4">{% trans "Order" %}</th>
             <th class="py-2 pr-4">{% trans "Customer" %}</th>
             <th class="py-2 pr-4">{% trans "Due date" %}</th>
+            <th class="py-2 pr-4">{% trans "Total" %}</th>
             <th class="py-2">{% trans "Status" %}</th>
           </tr>
         </thead>
         <tbody>
-          {% for o in dashboard_overdue %}
-          <tr class="border-b border-base-100 dark:border-base-900">
-            <td class="py-2 pr-4 font-medium">#{{ o.pk }}</td>
+          {% for row in overdue_orders %}
+          {% with o=row.order %}
+          <tr class="border-b border-base-100 dark:border-base-800">
+            <td class="py-2 pr-4 font-medium">
+              <a class="text-primary-700 hover:underline dark:text-primary-300" href="{% url 'admin:orders_order_change' o.pk %}">#{{ o.pk }}</a>
+            </td>
             <td class="py-2 pr-4">{{ o.customer }}</td>
             <td class="py-2 pr-4">{{ o.due_date }}</td>
-            <td class="py-2">{{ o.get_status_display }}</td>
+            <td class="py-2 pr-4 font-medium">{{ row.formatted_total }}</td>
+            <td class="py-2">
+              <span class="unfold-display-label inline-flex rounded-full bg-primary-600/10 px-2 py-0.5 text-xs font-semibold text-primary-800 dark:text-primary-100">
+                {{ o.get_status_display }}
+              </span>
+            </td>
           </tr>
+          {% endwith %}
           {% empty %}
-          <tr><td colspan="4" class="py-4 text-font-subtle-light dark:text-font-subtle-dark">{% trans "No overdue orders." %}</td></tr>
+          <tr>
+            <td colspan="5" class="py-8 text-center text-font-subtle-light dark:text-font-subtle-dark">
+              {% trans "No overdue orders — great pacing." %}
+            </td>
+          </tr>
           {% endfor %}
         </tbody>
       </table>
@@ -68,42 +112,71 @@
   </div>
 </div>
 
-<div class="flex flex-col lg:flex-row lg:gap-8">
+<div class="mt-12 flex flex-col gap-10 lg:flex-row lg:gap-8">
     <div class="grow">
         {% include "unfold/helpers/app_list_default.html" %}
     </div>
     {% include "unfold/helpers/history.html" %}
 </div>
 
-{{ dashboard_order_chart|json_script:"orders-chart-data" }}
-{{ dashboard_tickets_chart|json_script:"tickets-chart-data" }}
+{{ stage_chart|json_script:"stage-chart-data" }}
 
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.4/dist/chart.umd.min.js"></script>
 <script>
 (function() {
-  const oc = JSON.parse(document.getElementById("orders-chart-data").textContent);
-  const tc = JSON.parse(document.getElementById("tickets-chart-data").textContent);
-  const palette = ["#C84B31", "#D97A68", "#E6B89C", "#3F51B5", "#009688", "#607D8B"];
-  if (document.getElementById("ordersChart")) {
-    new Chart(document.getElementById("ordersChart"), {
-      type: "doughnut",
-      data: {
-        labels: oc.labels,
-        datasets: [{ data: oc.data, backgroundColor: palette }]
-      },
-      options: { plugins: { legend: { position: "bottom" } } }
-    });
+  var el = document.getElementById("stageChart");
+  if (!el) return;
+  var data = JSON.parse(document.getElementById("stage-chart-data").textContent);
+  function lighten(hex, t) {
+    var m = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex || "#c84b31");
+    if (!m) return hex;
+    var r = parseInt(m[1], 16), gr = parseInt(m[2], 16), b = parseInt(m[3], 16);
+    var blend = function (c) { return Math.round((1 - t) * c + 255 * t); };
+    return "rgb(" + blend(r) + " " + blend(gr) + " " + blend(b) + ")";
   }
-  if (document.getElementById("ticketsChart")) {
-    new Chart(document.getElementById("ticketsChart"), {
-      type: "bar",
-      data: {
-        labels: tc.labels,
-        datasets: [{ label: "Tickets", data: tc.data, backgroundColor: "#C84B31" }]
+  new Chart(el, {
+    type: "bar",
+    data: {
+      labels: data.labels,
+      datasets: [{
+        label: "Tickets",
+        data: data.data,
+        backgroundColor: function(ctx) {
+          var chart = ctx.chart;
+          var area = chart.chartArea;
+          if (!area || !chart.ctx) return "rgb(200 75 49)";
+          var g = chart.ctx.createLinearGradient(0, area.bottom, 0, area.top);
+          g.addColorStop(0, lighten("#c84b31", 0.65));
+          g.addColorStop(0.55, "#c84b31");
+          g.addColorStop(1, "#6C5DD3");
+          return g;
+        },
+        borderRadius: 8,
+        borderSkipped: false,
+        maxBarThickness: 28,
+      }]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      layout: {
+        padding: { top: 6, bottom: 0, left: 0, right: 0 },
       },
-      options: { plugins: { legend: { display: false } }, scales: { y: { beginAtZero: true, ticks: { precision: 0 } } } }
-    });
-  }
+      animation: { duration: 600, easing: "easeOutQuart" },
+      plugins: { legend: { display: false } },
+      scales: {
+        x: {
+          grid: { display: false },
+          ticks: { maxRotation: 45, autoSkip: true, maxTicksLimit: 12, font: { size: 11 } },
+        },
+        y: {
+          beginAtZero: true,
+          ticks: { precision: 0, font: { size: 11 } },
+          grid: { color: "rgb(var(--color-base-200) / 0.5)" },
+        },
+      },
+    },
+  });
 })();
 </script>
 {% endblock %}

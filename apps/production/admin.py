@@ -27,9 +27,11 @@ class StatusHistoryInline(TabularInline):
 @admin.register(Employee)
 class EmployeeAdmin(ModelAdmin):
     list_display = ("user", "role", "hired_on", "active")
+    list_display_links = ("user",)
     list_filter = ("role", "active", "hired_on")
     search_fields = ("user__username", "user__first_name", "user__last_name")
     readonly_fields = ("user",)
+    save_on_top = True
 
     def has_delete_permission(self, request, obj=None):
         if not is_owner_or_manager(request.user):
@@ -40,7 +42,9 @@ class EmployeeAdmin(ModelAdmin):
 @admin.register(ProductionStage)
 class ProductionStageAdmin(ModelAdmin):
     list_display = ("sequence", "name", "is_terminal")
+    list_display_links = ("name",)
     ordering = ("sequence",)
+    save_on_top = True
 
     def has_add_permission(self, request):
         return is_owner_or_manager(request.user)
@@ -52,9 +56,11 @@ class ProductionStageAdmin(ModelAdmin):
 @admin.register(Ticket)
 class TicketAdmin(ModelAdmin):
     list_display = ("code", "order_item", "current_stage", "assigned_to", "priority", "deadline", "pdf_button")
+    list_display_links = ("code",)
     list_filter = ("current_stage", "priority", "assigned_to")
     search_fields = ("code", "order_item__description")
-    autocomplete_fields = ("assigned_to",)
+    autocomplete_fields = ("order_item", "assigned_to")
+    save_on_top = True
     readonly_fields = ("code", "print_ticket", "created_at", "updated_at")
     actions = ("advance_stage",)
     inlines = [StatusHistoryInline]
@@ -147,6 +153,7 @@ class TicketAdmin(ModelAdmin):
 @admin.register(StatusHistory)
 class StatusHistoryAdmin(ModelAdmin):
     list_display = ("ticket", "stage", "changed_by", "changed_at")
+    list_display_links = ("ticket",)
     list_filter = ("stage", "changed_at")
     search_fields = ("ticket__code", "comment")
     readonly_fields = ("ticket", "stage", "changed_by", "changed_at", "comment", "allow_backward")
@@ -164,9 +171,12 @@ class StatusHistoryAdmin(ModelAdmin):
 @admin.register(Delivery)
 class DeliveryAdmin(ModelAdmin):
     list_display = ("order", "delivered_at", "received_by", "delivered_by")
+    list_display_links = ("order",)
     list_filter = ("delivered_at",)
+    date_hierarchy = "delivered_at"
     search_fields = ("order__id", "received_by")
     autocomplete_fields = ("order", "delivered_by")
+    save_on_top = True
 
     def has_delete_permission(self, request, obj=None):
         if is_tailor(request.user) or is_staff_role(request.user):

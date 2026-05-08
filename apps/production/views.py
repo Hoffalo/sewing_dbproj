@@ -8,12 +8,14 @@ from django.contrib.admin.views.decorators import staff_member_required
 from django.http import FileResponse
 from django.shortcuts import get_object_or_404
 from django.utils import timezone
+from django.utils.translation import gettext as _
 from reportlab.lib import colors
 from reportlab.lib.pagesizes import A4
 from reportlab.lib.styles import ParagraphStyle, getSampleStyleSheet
 from reportlab.lib.units import cm
 from reportlab.platypus import Paragraph, SimpleDocTemplate, Spacer, Table, TableStyle
 
+from apps.orders.money import format_money
 from apps.production.models import Ticket
 
 
@@ -58,12 +60,17 @@ def ticket_pdf(request, ticket_id: int):
     story.append(Paragraph(f"<b>{ticket.code}</b> &nbsp;|&nbsp; Etapa: {ticket.current_stage.name}", styles["Heading3"]))
     story.append(Spacer(1, 0.3 * cm))
 
+    line_total = oi.quantity * oi.unit_price
     ci_data = [
         ["Cliente", f"{customer.first_name} {customer.last_name}"],
         ["Teléfono", customer.phone or "—"],
         ["Pedido", f"#{order.pk} — vence {order.due_date}"],
+        ["Moneda", order.currency],
+        [_("Line total"), format_money(line_total, order.currency)],
+        [_("Order total"), format_money(order.total_price, order.currency)],
         ["Prenda", oi.get_garment_type_display()],
         ["Descripción", oi.description],
+        [_("Unit price"), format_money(oi.unit_price, order.currency)],
     ]
     if oi.fabric:
         ci_data.append(["Tela", oi.fabric])

@@ -1,0 +1,34 @@
+/* Costuras Lucía — Unfold surface + readability tweaks */
+
+/* Warmer card surfaces */
+.bg-white {
+  background-color: rgb(var(--color-base-50)) !important;
+}
+
+/* Status badges — bigger, friendlier */
+.unfold-display-label {
+  padding: 4px 10px !important;
+  border-radius: 999px !important;
+  font-weight: 500 !important;
+  letter-spacing: 0.01em;
+}
+
+/* Larger form labels for the older user */
+label.block {
+  font-size: 0.95rem !important;
+}
+
+/* Dashboard tile typography */
+.dashboard-tile-value {
+  font-size: 2rem !important;
+  font-weight: 600;
+}
+.dashboard-tile-label {
+  font-size: 0.85rem !important;
+  color: rgb(var(--color-base-500));
+}
+
+/* Soft shadows instead of hard borders on cards */
+.border {
+  border-color: rgb(var(--color-base-200) / 0.6) !important;
+}

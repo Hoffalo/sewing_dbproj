@@ -7,3 +7,4 @@ django-extensions==4.1
 pydot==3.0.4
 pyparsing==3.2.3
 reportlab==4.4.2
+babel>=2.14

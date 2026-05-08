@@ -1,0 +1,574 @@
+/* Costuras Lucía — white-forward surfaces (base), lavender accents (primary in Unfold). */
+
+:root {
+  --cl-shadow-nav: 0 2px 8px -2px rgb(35 39 51 / 0.06),
+    0 10px 28px -12px rgb(128 111 167 / 0.1);
+  --cl-shadow-card: 0 8px 32px -12px rgb(35 39 51 / 0.08),
+    0 4px 16px -8px rgb(128 111 167 / 0.08);
+  --cl-shadow-header: 0 2px 12px -4px rgb(35 39 51 / 0.07);
+  --cl-page-bg: #ffffff;
+}
+
+/* Solid white chrome — avoids base-50 / dark mode gray cast */
+html {
+  background-color: var(--cl-page-bg) !important;
+  color-scheme: light;
+}
+body {
+  background-color: var(--cl-page-bg) !important;
+}
+html.dark body {
+  background-color: var(--cl-page-bg) !important;
+}
+#page {
+  background-color: var(--cl-page-bg) !important;
+}
+#main {
+  background-color: var(--cl-page-bg) !important;
+}
+html.dark #main {
+  background-color: var(--cl-page-bg) !important;
+}
+
+/* Nav panel only: light on narrow screens */
+@media (max-width: 1279.98px) {
+  #nav-sidebar,
+  #nav-sidebar-inner,
+  #page > div.relative.z-60 > div > div[class*="bg-base"] {
+    background-color: var(--cl-page-bg) !important;
+  }
+}
+
+/* Panels read as pure white (#base-50 already white) */
+.bg-white {
+  background-color: var(--cl-page-bg) !important;
+}
+
+/* Status badges */
+.unfold-display-label {
+  padding: 4px 10px !important;
+  border-radius: 999px !important;
+  font-weight: 500 !important;
+  letter-spacing: 0.01em;
+}
+
+label.block {
+  font-size: 0.95rem !important;
+  color: rgb(var(--color-font-important-light)) !important;
+  font-weight: 600 !important;
+}
+
+.dashboard-tile-value {
+  font-size: 2rem !important;
+  font-weight: 600;
+  color: rgb(var(--color-primary-950)) !important;
+}
+/* Dark lavender type — high contrast on white (no faint opacity) */
+body {
+  color: rgb(var(--color-font-default-light)) !important;
+}
+
+.dashboard-tile-label {
+  font-size: 0.85rem !important;
+  color: rgb(var(--color-font-subtle-light)) !important;
+  font-weight: 600 !important;
+  opacity: 1 !important;
+}
+
+.text-font-subtle-light,
+[class*="text-font-subtle-light"] {
+  color: rgb(var(--color-font-subtle-light)) !important;
+  opacity: 1 !important;
+}
+
+.text-font-default-light,
+[class*="text-font-default-light"] {
+  opacity: 1 !important;
+}
+
+.text-font-important-light,
+[class*="text-font-important-light"] {
+  opacity: 1 !important;
+}
+
+.border,
+.border-base-100,
+.border-base-200,
+.border-base-300 {
+  border-color: rgb(var(--color-primary-300)) !important;
+}
+
+/* Changelist + admin data tables — always light rows (fixes dark `<html>` + `dark:bg-*` + dark cell text) */
+#main #changelist [data-simplebar],
+#main #changelist [data-simplebar] .simplebar-content {
+  background-color: rgb(var(--cl-page-bg)) !important;
+}
+
+#main table.result-list,
+#main table#result_list {
+  background-color: rgb(var(--cl-page-bg)) !important;
+}
+
+#main table thead th,
+#main .results thead th {
+  background-color: rgb(var(--color-base-100)) !important;
+  color: rgb(var(--color-font-important-light)) !important;
+  opacity: 1 !important;
+}
+
+#main table thead th a {
+  color: rgb(var(--color-font-important-light)) !important;
+}
+
+#main table#result_list tbody,
+#main table.result-list tbody {
+  background-color: transparent !important;
+}
+
+#main table#result_list tbody tr.data-row,
+#main table.result-list tbody tr.data-row {
+  background-color: rgb(var(--cl-page-bg)) !important;
+}
+
+#main table#result_list tbody[class*="bg-base-50"],
+#main table.result-list tbody[class*="bg-base-50"],
+#main table#result_list tbody[class*="dark:bg-white"] {
+  background-color: transparent !important;
+}
+
+#main table#result_list tbody[class*="bg-base-50"] tr.data-row,
+#main table.result-list tbody[class*="bg-base-50"] tr.data-row {
+  background-color: rgb(var(--color-base-100)) !important;
+}
+
+#main table tbody td {
+  color: rgb(var(--color-font-default-light)) !important;
+  opacity: 1 !important;
+  border-color: rgb(var(--color-primary-200)) !important;
+}
+
+#main table.result-list td[class*="before:"]::before {
+  color: rgb(var(--color-font-important-light)) !important;
+}
+
+#main table.result-list thead .sortoptions a,
+#main table.result-list thead .sortoptions .material-symbols-outlined {
+  color: rgb(var(--color-primary-700)) !important;
+}
+
+/* Changelist search field */
+#main #changelist #toolbar .flex.flex-row.items-center.border,
+#main #changelist #toolbar [class*="shadow-xs"][class*="border-base"] {
+  background-color: rgb(var(--cl-page-bg)) !important;
+  border-color: rgb(var(--color-primary-300)) !important;
+}
+
+#main #changelist #toolbar input[type="text"],
+#main #changelist #toolbar input[type="search"] {
+  color: rgb(var(--color-font-default-light)) !important;
+  background-color: transparent !important;
+}
+
+#main #changelist #toolbar .material-symbols-outlined.md-18 {
+  color: rgb(var(--color-primary-700)) !important;
+}
+
+/* Tabular inlines on change forms */
+#main .tabular.inline-related tbody tr,
+#main fieldset.module table tbody tr {
+  background-color: rgb(var(--cl-page-bg)) !important;
+}
+
+#main .tabular.inline-related thead th,
+#main fieldset.module table thead th {
+  background-color: rgb(var(--color-base-100)) !important;
+}
+
+#main tbody a:link,
+#main tbody a:visited {
+  color: rgb(var(--color-primary-900)) !important;
+  font-weight: 600 !important;
+}
+
+#main input:not([disabled])::placeholder,
+#main textarea:not([disabled])::placeholder {
+  color: rgb(var(--color-primary-700)) !important;
+  opacity: 1 !important;
+}
+
+#main input[disabled],
+#main textarea[disabled],
+#main select[disabled] {
+  color: rgb(var(--color-primary-900)) !important;
+  opacity: 0.9 !important;
+}
+
+/* Nav links narrow screens (drawer) — keep dark ink on white panel */
+@media (max-width: 1279.98px) {
+  #nav-sidebar-apps a {
+    color: rgb(var(--color-font-default-light)) !important;
+    opacity: 1 !important;
+  }
+
+  #nav-sidebar-apps a:hover {
+    background-color: rgb(var(--color-primary-50) / 0.95) !important;
+    color: rgb(var(--color-primary-950)) !important;
+  }
+
+  #nav-sidebar-apps a.active {
+    background-color: rgb(var(--color-primary-100)) !important;
+    color: rgb(var(--color-primary-950)) !important;
+    font-weight: 600 !important;
+    box-shadow: inset 0 0 0 1px rgb(var(--color-primary-400) / 0.35);
+  }
+
+  #nav-sidebar-apps a:not(.active) .material-symbols-outlined.md-18,
+  #nav-sidebar-apps a:not(.active) .material-symbols-outlined[class*="mr-"] {
+    color: rgb(var(--color-primary-900)) !important;
+  }
+
+  #nav-sidebar-apps a.active .material-symbols-outlined.md-18,
+  #nav-sidebar-apps a.active .material-symbols-outlined[class*="mr-"] {
+    color: rgb(var(--color-primary-950)) !important;
+  }
+}
+
+#main .text-base-400,
+#main .text-base-500 {
+  color: rgb(var(--color-font-subtle-light)) !important;
+  opacity: 1 !important;
+}
+
+/* Pastel badges + dashboard icons — saturated ink on white */
+#main span.unfold-display-label[class*="text-primary"][class*="bg-primary"] {
+  color: rgb(var(--color-font-important-light)) !important;
+}
+
+#main span.unfold-display-label[class*="bg-primary"] {
+  background-color: rgb(var(--color-primary-200) / 0.72) !important;
+}
+
+#main span.material-symbols-outlined[class*="text-primary"] {
+  color: rgb(var(--color-primary-950)) !important;
+}
+
+#main a.text-primary-700,
+#main td a.text-primary-700 {
+  color: rgb(var(--color-primary-950)) !important;
+}
+
+/* Main header strip */
+#main > div.border-b.border-base-200 {
+  box-shadow: var(--cl-shadow-header) !important;
+  margin-bottom: 1rem !important;
+}
+
+/* Site name + current page title (header) — softer mid-lavender, not ink */
+#main > div.border-b.border-base-200 h1,
+#main > div.border-b.border-base-200 h1.text-important {
+  color: rgb(var(--color-primary-700)) !important;
+}
+
+#main > div.border-b.border-base-200 h1 .text-subtle,
+#main > div.border-b.border-base-200 h1 span.font-medium.text-subtle {
+  color: rgb(var(--color-primary-600)) !important;
+}
+
+#main > div.border-b.border-base-200 #header-inner .material-symbols-outlined {
+  color: rgb(var(--color-primary-700)) !important;
+}
+
+/* In-page titles (Dashboard, section heads) — same tone; table <th> keep darker rule below */
+#content h1.text-font-important-light,
+#content h2.text-font-important-light,
+#content h3.text-font-important-light {
+  color: rgb(var(--color-primary-700)) !important;
+}
+
+/* CRM / dashboard cards */
+a.group.rounded-xl.border,
+#main .rounded-xl.border.border-base-200.bg-white,
+.cl-crm-column {
+  box-shadow: var(--cl-shadow-card) !important;
+}
+
+/* —— xl+: one horizontal top bar (logo • search • links scroll • account) —— */
+@media (min-width: 1280px) {
+  #page {
+    flex-direction: column !important;
+  }
+
+  #page > div.relative.z-60 > div[class*="xl:block"],
+  #page > div.relative.z-60 > div {
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+
+  #page > div.relative.z-60 > div > div[class*="bg-base"] {
+    background-color: rgb(var(--color-primary-950)) !important;
+  }
+
+  #nav-sidebar {
+    position: sticky !important;
+    inset: auto !important;
+    top: 0 !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    height: auto !important;
+    max-height: none !important;
+    border-right-width: 0 !important;
+    background-color: rgb(var(--color-primary-950)) !important;
+    border-bottom: 1px solid rgb(var(--color-primary-800)) !important;
+    box-shadow: var(--cl-shadow-nav) !important;
+    z-index: 50 !important;
+  }
+
+  #nav-sidebar-inner {
+    flex-direction: row !important;
+    flex-wrap: nowrap !important;
+    align-items: center !important;
+    justify-content: flex-start !important;
+    gap: 0.75rem 1rem !important;
+    min-height: 3.5rem !important;
+    height: auto !important;
+    padding: 0.5rem 1rem !important;
+    overflow-x: auto !important;
+    overflow-y: hidden !important;
+    scrollbar-width: thin;
+    scrollbar-color: rgb(var(--color-primary-400)) rgb(var(--color-primary-950));
+    background-color: transparent !important;
+    color: rgb(var(--color-primary-50)) !important;
+  }
+
+  /* Site logo / branding (first row block) — same line as links */
+  #nav-sidebar-inner > div:first-child {
+    flex-shrink: 0 !important;
+    align-self: center !important;
+    height: auto !important;
+    min-height: 0 !important;
+    margin-bottom: 0 !important;
+    border-bottom-width: 0 !important;
+    padding-inline: 0 !important;
+    gap: 0.5rem !important;
+    max-height: none !important;
+  }
+
+  #nav-sidebar-inner > div:first-child .grow[class*="cursor-pointer"],
+  #nav-sidebar-inner > div:first-child > div {
+    padding-inline: 0.375rem !important;
+    gap: 0.5rem !important;
+    min-height: 0 !important;
+    height: auto !important;
+    max-height: none !important;
+  }
+
+  /* Branding — readable light text on dark lavender */
+  #nav-sidebar-inner > div:first-child *,
+  #nav-sidebar-inner > div:first-child .material-symbols-outlined {
+    color: rgb(var(--color-primary-50)) !important;
+  }
+
+  /* Sidebar search — keep light field; labels stay dark lavender for readability */
+  #nav-sidebar-inner div.relative[class*="mx-3"]:not([class*="border-t"]) [class*="rounded-default"][class*="border-base"],
+  #nav-sidebar-inner div.relative[class*="mx-3"]:not([class*="border-t"]) .bg-white {
+    background-color: rgb(var(--cl-page-bg)) !important;
+    border-color: rgb(var(--color-primary-500) / 0.45) !important;
+  }
+
+  #nav-sidebar-inner #nav-filter {
+    color: rgb(var(--color-primary-950)) !important;
+  }
+
+  #nav-sidebar-inner div.relative[class*="mx-3"]:not([class*="border-t"]) .material-symbols-outlined {
+    color: rgb(var(--color-primary-800)) !important;
+  }
+
+  #nav-sidebar-inner div.relative[class*="mx-3"]:not([class*="border-t"]) .truncate,
+  #nav-sidebar-inner div.relative[class*="mx-3"]:not([class*="border-t"]) [class*="placeholder-"] {
+    color: rgb(var(--color-primary-800)) !important;
+  }
+
+  /* Sidebar search (filter or command palette) — fixed width pill */
+  #nav-sidebar-inner > div:has(#nav-filter),
+  #nav-sidebar-inner > div.relative[class*="mx-3"]:not([class*="border-t"]) {
+    flex-shrink: 0 !important;
+    align-self: center !important;
+    width: min(210px, 22vw) !important;
+    min-width: 160px !important;
+    max-width: 240px !important;
+    margin: 0 !important;
+  }
+
+  #nav-sidebar-inner > div:has(#nav-filter) .grow {
+    min-width: 0 !important;
+  }
+
+  /* App links: horizontal scroll region (SimpleBar + native overflow fallback) */
+  #nav-sidebar-apps {
+    flex: 1 1 0% !important;
+    min-width: 0 !important;
+    align-self: stretch !important;
+    height: auto !important;
+    max-height: none !important;
+    margin: 0 !important;
+  }
+
+  #nav-sidebar-apps .simplebar-wrapper {
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+  }
+
+  #nav-sidebar-apps .simplebar-mask,
+  #nav-sidebar-apps .simplebar-offset,
+  #nav-sidebar-apps .simplebar-content-wrapper {
+    max-height: none !important;
+    height: auto !important;
+  }
+
+  #nav-sidebar-apps .simplebar-content-wrapper {
+    overflow-x: auto !important;
+    overflow-y: hidden !important;
+    scrollbar-width: thin;
+  }
+
+  #nav-sidebar-apps .simplebar-track.simplebar-vertical {
+    opacity: 0 !important;
+    pointer-events: none !important;
+  }
+
+  #nav-sidebar-apps:not([data-simplebar]) {
+    overflow-x: auto !important;
+    scrollbar-width: thin;
+  }
+
+  #nav-sidebar-apps .simplebar-content {
+    display: flex !important;
+    flex-direction: row !important;
+    flex-wrap: nowrap !important;
+    align-items: center !important;
+    gap: 0.5rem 1.25rem !important;
+    min-height: 2.75rem !important;
+  }
+
+  #nav-sidebar-apps > div,
+  #nav-sidebar-apps .simplebar-content > div {
+    flex-shrink: 0 !important;
+    margin-bottom: 0 !important;
+  }
+
+  #nav-sidebar-apps > div hr,
+  #nav-sidebar-apps .simplebar-content > div hr {
+    display: none !important;
+  }
+
+  #nav-sidebar-apps > div:has(ol),
+  #nav-sidebar-apps .simplebar-content > div:has(ol) {
+    display: flex !important;
+    flex-direction: row !important;
+    flex-wrap: nowrap !important;
+    align-items: center !important;
+    gap: 0.25rem !important;
+  }
+
+  #nav-sidebar-apps h2[class*="font-semibold"] {
+    display: none !important;
+  }
+
+  #nav-sidebar-apps ol {
+    display: flex !important;
+    flex-direction: row !important;
+    flex-wrap: nowrap !important;
+    align-items: center !important;
+    gap: 0.125rem !important;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+  }
+
+  #nav-sidebar-apps ol li {
+    flex-shrink: 0 !important;
+    white-space: nowrap !important;
+  }
+
+  #nav-sidebar-apps ol li a {
+    height: auto !important;
+    min-height: 2.5rem !important;
+    padding: 0.45rem 0.65rem !important;
+    margin-inline: 0 !important;
+    border-radius: 0.5rem !important;
+    white-space: nowrap !important;
+  }
+
+  #nav-sidebar-apps ol li a .material-symbols-outlined.mr-3 {
+    margin-right: 0.35rem !important;
+  }
+
+  /* Nav rail links — same light-toned lettering as branding */
+  #nav-sidebar-apps a {
+    color: rgb(var(--color-primary-50)) !important;
+  }
+
+  #nav-sidebar-apps a:hover {
+    background-color: rgb(255 255 255 / 0.12) !important;
+    color: rgb(255 255 255) !important;
+  }
+
+  /* Clear “selected” pill: light surface + dark text (not white-on-purple) */
+  #nav-sidebar-apps a.active {
+    background-color: rgb(var(--color-primary-100)) !important;
+    color: rgb(var(--color-primary-950)) !important;
+    font-weight: 600 !important;
+    box-shadow: inset 0 0 0 1px rgb(var(--color-primary-400) / 0.45), 0 1px 3px rgb(0 0 0 / 0.12);
+  }
+
+  #nav-sidebar-apps a.active:hover {
+    background-color: rgb(var(--cl-page-bg)) !important;
+    color: rgb(var(--color-primary-950)) !important;
+  }
+
+  #nav-sidebar-apps a .material-symbols-outlined {
+    color: inherit !important;
+  }
+
+  /* User menu — pinned right, compact row */
+  #nav-sidebar-inner > div[class*="border-t"][class*="border-base"] {
+    flex-shrink: 0 !important;
+    align-self: center !important;
+    margin-left: auto !important;
+    border-top-width: 0 !important;
+    padding: 0 !important;
+    position: relative !important;
+  }
+
+  #nav-sidebar-inner > div[class*="border-t"][class*="border-base"] nav[x-show] {
+    top: calc(100% + 6px) !important;
+    bottom: auto !important;
+    left: auto !important;
+    right: 0 !important;
+  }
+
+  #nav-sidebar-inner > div[class*="border-t"][class*="border-base"] .cursor-pointer.flex.flex-row[class*="gap-3"] {
+    min-height: 0 !important;
+    padding: 0.4rem 0.5rem !important;
+    margin: 0 !important;
+    border-radius: 0.5rem !important;
+    gap: 0.35rem !important;
+  }
+
+  #nav-sidebar-inner > div[class*="border-t"] .text-subtle {
+    display: block !important;
+    color: rgb(var(--color-primary-200)) !important;
+    max-width: 12rem !important;
+    font-size: 0.72rem !important;
+  }
+
+  #nav-sidebar-inner > div[class*="border-t"] .font-semibold.text-important {
+    max-width: 10rem !important;
+    font-size: 0.875rem !important;
+    color: rgb(255 255 255) !important;
+  }
+
+  #nav-sidebar-inner > div[class*="border-t"] .material-symbols-outlined {
+    color: rgb(var(--color-primary-50)) !important;
+  }
+}

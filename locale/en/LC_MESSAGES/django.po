@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-05-07 10:57-0500\n"
+"POT-Creation-Date: 2026-05-08 09:06-0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,26 +17,27 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-#: apps/customers/admin.py:16
+
+#: apps/customers/admin.py:18
 msgid "Identity"
 msgstr ""
 
-#: apps/customers/admin.py:17 apps/customers/models.py:29
+#: apps/customers/admin.py:19 apps/customers/models.py:29
 msgid "Address"
 msgstr ""
 
-#: apps/customers/admin.py:18 apps/customers/models.py:32
-#: apps/orders/admin.py:85 apps/orders/models.py:63 apps/orders/models.py:162
+#: apps/customers/admin.py:20 apps/customers/models.py:32
+#: apps/orders/admin.py:146 apps/orders/models.py:77 apps/orders/models.py:176
 msgid "Notes"
 msgstr ""
 
-#: apps/customers/admin.py:19 apps/orders/admin.py:86
-#: apps/production/admin.py:64
+#: apps/customers/admin.py:21 apps/orders/admin.py:147
+#: apps/production/admin.py:70
 msgid "Audit"
 msgstr ""
 
 #: apps/customers/apps.py:8 apps/customers/models.py:40
-#: sewing_shop/settings.py:132
+#: sewing_shop/settings.py:179
 msgid "Customers"
 msgstr ""
 
@@ -64,303 +65,349 @@ msgstr ""
 msgid "Preferences, fabric allergies, etc."
 msgstr ""
 
-#: apps/customers/models.py:35 apps/orders/models.py:64
+#: apps/customers/models.py:35 apps/orders/models.py:78
 #: apps/production/models.py:113
 msgid "Created at"
 msgstr ""
 
-#: apps/customers/models.py:36 apps/orders/models.py:65
+#: apps/customers/models.py:36 apps/orders/models.py:79
 #: apps/production/models.py:114
 msgid "Updated at"
 msgstr ""
 
-#: apps/customers/models.py:39 apps/orders/models.py:42
-#: templates/admin/index.html:49
+#: apps/customers/models.py:39 apps/orders/models.py:49
+#: templates/admin/index.html:71
 msgid "Customer"
 msgstr ""
 
-#: apps/orders/admin.py:42 apps/production/models.py:218
+#: apps/orders/admin.py:57 apps/orders/models.py:129
+#: apps/production/views.py:73
+msgid "Unit price"
+msgstr ""
+
+#: apps/orders/admin.py:63 apps/production/views.py:69
+msgid "Line total"
+msgstr ""
+
+#: apps/orders/admin.py:72 apps/production/models.py:218
 msgid "Received by"
 msgstr ""
 
-#: apps/orders/admin.py:45 apps/production/models.py:224
+#: apps/orders/admin.py:75 apps/production/models.py:224
 msgid "Delivered by"
 msgstr ""
 
-#: apps/orders/admin.py:48 apps/production/models.py:226
+#: apps/orders/admin.py:78 apps/production/models.py:226
 msgid "Final observations"
 msgstr ""
 
-#: apps/orders/admin.py:84 apps/orders/models.py:68 apps/orders/models.py:101
-#: apps/production/models.py:215 templates/admin/index.html:48
+#: apps/orders/admin.py:92 apps/orders/admin.py:158 apps/orders/models.py:69
+#: apps/orders/models.py:218
+msgid "Currency"
+msgstr ""
+
+#: apps/orders/admin.py:96 apps/orders/models.py:211
+msgid "Cost per unit"
+msgstr ""
+
+#: apps/orders/admin.py:144 apps/orders/models.py:82 apps/orders/models.py:115
+#: apps/production/models.py:215 templates/admin/index.html:70
 msgid "Order"
 msgstr ""
 
-#: apps/orders/admin.py:89 apps/orders/models.py:55
-#: templates/admin/index.html:51
+#: apps/orders/admin.py:145
+msgid "Pricing"
+msgstr ""
+
+#: apps/orders/admin.py:150 apps/orders/models.py:62
+#: templates/admin/index.html:74
 msgid "Status"
 msgstr ""
 
-#: apps/orders/admin.py:122
+#: apps/orders/admin.py:162 templates/admin/index.html:73
+msgid "Total"
+msgstr ""
+
+#: apps/orders/admin.py:191
 msgid "Generate tickets (RECEIVED) for selected orders"
 msgstr ""
 
-#: apps/orders/admin.py:128
+#: apps/orders/admin.py:197
 msgid "Missing RECEIVED stage — run migrations."
 msgstr ""
 
-#: apps/orders/admin.py:147
+#: apps/orders/admin.py:216
 msgid "Ticket opened from admin."
 msgstr ""
 
-#: apps/orders/admin.py:150
+#: apps/orders/admin.py:219
 #, python-format
 msgid "Created %(n)s ticket(s)."
 msgstr ""
 
-#: apps/orders/admin.py:152
+#: apps/orders/admin.py:221
 msgid "Mark as delivered…"
 msgstr ""
 
-#: apps/orders/admin.py:155
+#: apps/orders/admin.py:224
 msgid "Select exactly one order."
 msgstr ""
 
-#: apps/orders/admin.py:167
+#: apps/orders/admin.py:236
 msgid "This order already has a delivery record."
 msgstr ""
 
-#: apps/orders/admin.py:179
+#: apps/orders/admin.py:248
 msgid "Delivery recorded."
 msgstr ""
 
-#: apps/orders/admin.py:185 templates/admin/orders/deliver_intermediate.html:10
+#: apps/orders/admin.py:254 templates/admin/orders/deliver_intermediate.html:10
 #: templates/admin/orders/deliver_intermediate.html:15
 msgid "Record delivery"
 msgstr ""
 
-#: apps/orders/models.py:31
-msgid "Pending"
-msgstr ""
-
-#: apps/orders/models.py:32 templates/admin/index.html:18
-msgid "In production"
-msgstr ""
-
-#: apps/orders/models.py:33
-msgid "Ready"
-msgstr ""
-
-#: apps/orders/models.py:34
-msgid "Delivered"
-msgstr ""
-
-#: apps/orders/models.py:35
-msgid "Cancelled"
-msgstr ""
-
-#: apps/orders/models.py:47
-msgid "Order date"
-msgstr ""
-
-#: apps/orders/models.py:49 templates/admin/index.html:50
-msgid "Due date"
-msgstr ""
-
-#: apps/orders/models.py:61
-msgid "Total price"
-msgstr ""
-
-#: apps/orders/models.py:69 sewing_shop/settings.py:136
-#: sewing_shop/settings.py:139
+#: apps/orders/apps.py:8 apps/orders/models.py:83 sewing_shop/settings.py:184
 msgid "Orders"
 msgstr ""
 
-#: apps/orders/models.py:81
+#: apps/orders/models.py:20
+msgid "Euro (€)"
+msgstr ""
+
+#: apps/orders/models.py:21
+msgid "Peso colombiano ($)"
+msgstr ""
+
+#: apps/orders/models.py:22
+msgid "US Dollar ($)"
+msgstr ""
+
+#: apps/orders/models.py:38 apps/production/dashboard.py:29
+msgid "Pending"
+msgstr ""
+
+#: apps/orders/models.py:39 apps/production/dashboard.py:36
+msgid "In production"
+msgstr ""
+
+#: apps/orders/models.py:40
+msgid "Ready"
+msgstr ""
+
+#: apps/orders/models.py:41
+msgid "Delivered"
+msgstr ""
+
+#: apps/orders/models.py:42
+msgid "Cancelled"
+msgstr ""
+
+#: apps/orders/models.py:54
+msgid "Order date"
+msgstr ""
+
+#: apps/orders/models.py:56 templates/admin/index.html:72
+msgid "Due date"
+msgstr ""
+
+#: apps/orders/models.py:75
+msgid "Total price"
+msgstr ""
+
+#: apps/orders/models.py:95
 msgid "(unsaved order)"
 msgstr ""
 
-#: apps/orders/models.py:88
+#: apps/orders/models.py:102
 msgid "Dress"
 msgstr ""
 
-#: apps/orders/models.py:89
+#: apps/orders/models.py:103
 msgid "Suit"
 msgstr ""
 
-#: apps/orders/models.py:90
+#: apps/orders/models.py:104
 msgid "Shirt"
 msgstr ""
 
-#: apps/orders/models.py:91
+#: apps/orders/models.py:105
 msgid "Pants"
 msgstr ""
 
-#: apps/orders/models.py:92
+#: apps/orders/models.py:106
 msgid "Skirt"
 msgstr ""
 
-#: apps/orders/models.py:93
+#: apps/orders/models.py:107
 msgid "Alteration"
 msgstr ""
 
-#: apps/orders/models.py:94 apps/orders/models.py:147
+#: apps/orders/models.py:108 apps/orders/models.py:161
 msgid "Other"
 msgstr ""
 
-#: apps/orders/models.py:106
+#: apps/orders/models.py:120
 msgid "Garment type"
 msgstr ""
 
-#: apps/orders/models.py:108
+#: apps/orders/models.py:122
 msgid "Description"
 msgstr ""
 
-#: apps/orders/models.py:109
+#: apps/orders/models.py:123
 msgid "Fabric"
 msgstr ""
 
-#: apps/orders/models.py:110
+#: apps/orders/models.py:124
 msgid "Color"
 msgstr ""
 
-#: apps/orders/models.py:111
+#: apps/orders/models.py:125
 msgid "Quantity"
 msgstr ""
 
-#: apps/orders/models.py:115
-msgid "Unit price"
-msgstr ""
-
-#: apps/orders/models.py:117
+#: apps/orders/models.py:131
 msgid "Design notes"
 msgstr ""
 
-#: apps/orders/models.py:118
+#: apps/orders/models.py:132
 msgid "Position"
 msgstr ""
 
-#: apps/orders/models.py:121 apps/orders/models.py:154
-#: apps/orders/models.py:222 apps/production/models.py:84
+#: apps/orders/models.py:135 apps/orders/models.py:168
+#: apps/orders/models.py:243 apps/production/models.py:84
 msgid "Order line"
 msgstr ""
 
-#: apps/orders/models.py:122
+#: apps/orders/models.py:136
 msgid "Order lines"
 msgstr ""
 
-#: apps/orders/models.py:139
+#: apps/orders/models.py:153
 msgid "Bust"
 msgstr ""
 
-#: apps/orders/models.py:140
+#: apps/orders/models.py:154
 msgid "Waist"
 msgstr ""
 
-#: apps/orders/models.py:141
+#: apps/orders/models.py:155
 msgid "Hips"
 msgstr ""
 
-#: apps/orders/models.py:142
+#: apps/orders/models.py:156
 msgid "Inseam"
 msgstr ""
 
-#: apps/orders/models.py:143
+#: apps/orders/models.py:157
 msgid "Sleeve"
 msgstr ""
 
-#: apps/orders/models.py:144
+#: apps/orders/models.py:158
 msgid "Shoulder"
 msgstr ""
 
-#: apps/orders/models.py:145
+#: apps/orders/models.py:159
 msgid "Neck"
 msgstr ""
 
-#: apps/orders/models.py:146
+#: apps/orders/models.py:160
 msgid "Length"
 msgstr ""
 
-#: apps/orders/models.py:156 apps/orders/models.py:165
+#: apps/orders/models.py:170 apps/orders/models.py:179
 msgid "Measurement"
 msgstr ""
 
-#: apps/orders/models.py:160
+#: apps/orders/models.py:174
 msgid "Value (cm)"
 msgstr ""
 
-#: apps/orders/models.py:166
+#: apps/orders/models.py:180
 msgid "Measurements"
 msgstr ""
 
-#: apps/orders/models.py:182
+#: apps/orders/models.py:196
 msgid "Meter"
 msgstr ""
 
-#: apps/orders/models.py:183 apps/orders/models.py:188
+#: apps/orders/models.py:197 apps/orders/models.py:202
 msgid "Unit"
 msgstr ""
 
-#: apps/orders/models.py:184
+#: apps/orders/models.py:198
 msgid "Gram"
 msgstr ""
 
-#: apps/orders/models.py:185
+#: apps/orders/models.py:199
 msgid "Spool"
 msgstr ""
 
-#: apps/orders/models.py:187 apps/production/models.py:57
+#: apps/orders/models.py:201 apps/production/models.py:57
 msgid "Name"
 msgstr ""
 
-#: apps/orders/models.py:192
+#: apps/orders/models.py:206
 msgid "Stock quantity"
 msgstr ""
 
-#: apps/orders/models.py:197
-msgid "Cost per unit"
-msgstr ""
-
-#: apps/orders/models.py:201 apps/orders/models.py:229
+#: apps/orders/models.py:222 apps/orders/models.py:250
 msgid "Material"
 msgstr ""
 
-#: apps/orders/models.py:202 sewing_shop/settings.py:140
+#: apps/orders/models.py:223 sewing_shop/settings.py:205
 msgid "Materials"
 msgstr ""
 
-#: apps/orders/models.py:234
+#: apps/orders/models.py:255
 msgid "Quantity used"
 msgstr ""
 
-#: apps/orders/models.py:238
+#: apps/orders/models.py:259
 msgid "Line material"
 msgstr ""
 
-#: apps/orders/models.py:239
+#: apps/orders/models.py:260
 msgid "Line materials"
 msgstr ""
 
-#: apps/production/admin.py:63
+#: apps/orders/models.py:282
+#, python-format
+msgid "Material currency (%(m)s) must match order currency (%(o)s)"
+msgstr ""
+
+#: apps/production/admin.py:69
 msgid "Work ticket"
 msgstr ""
 
-#: apps/production/admin.py:75 apps/production/admin.py:78
-#: apps/production/admin.py:82
+#: apps/production/admin.py:81 apps/production/admin.py:84
+#: apps/production/admin.py:88
 msgid "Print ticket"
 msgstr ""
 
-#: apps/production/admin.py:118
+#: apps/production/admin.py:124
 msgid "Advance stage / Avanzar etapa"
 msgstr ""
 
-#: apps/production/admin.py:141
+#: apps/production/admin.py:147
 msgid "Advanced via admin action."
 msgstr ""
 
-#: apps/production/admin.py:144
+#: apps/production/admin.py:150
 #, python-format
 msgid "Updated %(n)s ticket(s)."
+msgstr ""
+
+#: apps/production/apps.py:8
+msgid "Production"
+msgstr ""
+
+#: apps/production/dashboard.py:43
+msgid "Overdue"
+msgstr ""
+
+#: apps/production/dashboard.py:52
+msgid "Delivered this month"
 msgstr ""
 
 #: apps/production/models.py:23
@@ -399,7 +446,7 @@ msgstr ""
 msgid "Employee"
 msgstr ""
 
-#: apps/production/models.py:41 sewing_shop/settings.py:147
+#: apps/production/models.py:41 sewing_shop/settings.py:221
 msgid "Employees"
 msgstr ""
 
@@ -415,7 +462,7 @@ msgstr ""
 msgid "Production stage"
 msgstr ""
 
-#: apps/production/models.py:63
+#: apps/production/models.py:63 sewing_shop/settings.py:210
 msgid "Production stages"
 msgstr ""
 
@@ -465,7 +512,7 @@ msgstr ""
 msgid "Ticket"
 msgstr ""
 
-#: apps/production/models.py:118 sewing_shop/settings.py:149
+#: apps/production/models.py:118 sewing_shop/settings.py:189
 msgid "Tickets"
 msgstr ""
 
@@ -494,7 +541,6 @@ msgid "Supervisor override to move to an earlier sequence."
 msgstr ""
 
 #: apps/production/models.py:178 apps/production/models.py:179
-#: sewing_shop/settings.py:150
 msgid "Status history"
 msgstr ""
 
@@ -514,84 +560,107 @@ msgstr ""
 msgid "Delivery"
 msgstr ""
 
-#: apps/production/models.py:230 sewing_shop/settings.py:151
+#: apps/production/models.py:230 sewing_shop/settings.py:194
 msgid "Deliveries"
+msgstr ""
+
+#: apps/production/views.py:70
+msgid "Order total"
 msgstr ""
 
 #: sewing_shop/roles.py:45
 msgid "No employee profile linked to this user."
 msgstr ""
 
-#: sewing_shop/settings.py:96
+#: sewing_shop/settings.py:99 sewing_shop/settings.py:237
 msgid "Spanish"
 msgstr ""
 
-#: sewing_shop/settings.py:97
+#: sewing_shop/settings.py:100 sewing_shop/settings.py:242
 msgid "English"
 msgstr ""
 
-#: sewing_shop/settings.py:121
-msgid "Costuras Lucía"
+#: sewing_shop/settings.py:116
+msgid "Sastrería · Madrid"
 msgstr ""
 
-#: sewing_shop/settings.py:122
-msgid "Sewing shop management"
+#: sewing_shop/settings.py:170
+msgid "Operations"
 msgstr ""
 
-#: sewing_shop/settings.py:129
-msgid "Clients"
+#: sewing_shop/settings.py:174 templates/admin/index.html:14
+msgid "Dashboard"
 msgstr ""
 
-#: sewing_shop/settings.py:144
-msgid "Production"
+#: sewing_shop/settings.py:201
+msgid "Catalog"
 msgstr ""
 
-#: sewing_shop/settings.py:148
-msgid "Stages"
+#: sewing_shop/settings.py:217
+msgid "Team"
 msgstr ""
 
-#: sewing_shop/settings.py:155
-msgid "Reports"
+#: sewing_shop/settings.py:226
+msgid "Users"
 msgstr ""
 
-#: sewing_shop/settings.py:159
-msgid "Admin dashboard"
-msgstr ""
-
-#: sewing_shop/settings.py:185
-msgid "Language"
-msgstr ""
-
-#: templates/admin/index.html:4
+#: templates/admin/index.html:4 templates/admin/login.html:15
 msgid "Django site admin"
 msgstr ""
 
-#: templates/admin/index.html:14
-msgid "Pending orders"
+#: templates/admin/index.html:17
+msgid "Operational snapshot — click a tile to open the filtered list in admin."
 msgstr ""
 
-#: templates/admin/index.html:22
-msgid "Overdue"
+#: templates/admin/index.html:39
+msgid "Revenue this month (delivered)"
 msgstr ""
 
-#: templates/admin/index.html:26
-msgid "Delivered this month"
+#: templates/admin/index.html:42
+msgid "Shown per currency — never mixed across FX."
 msgstr ""
 
-#: templates/admin/index.html:33
-msgid "Orders by status (last 30 days)"
-msgstr ""
-
-#: templates/admin/index.html:37
+#: templates/admin/index.html:57
 msgid "Tickets by production stage"
 msgstr ""
 
-#: templates/admin/index.html:43
+#: templates/admin/index.html:59
+msgid "Workload across the tailoring pipeline."
+msgstr ""
+
+#: templates/admin/index.html:61
+msgid "Tickets by stage chart"
+msgstr ""
+
+#: templates/admin/index.html:65
 msgid "Five most overdue orders"
 msgstr ""
 
-#: templates/admin/index.html:63
-msgid "No overdue orders."
+#: templates/admin/index.html:97
+msgid "No overdue orders — great pacing."
+msgstr ""
+
+#: templates/admin/login.html:15
+msgid "Welcome back to"
+msgstr ""
+
+#: templates/admin/login.html:26
+#, python-format
+msgid ""
+"You are authenticated as %(username)s, but are not authorized to access this "
+"page. Would you like to login to a different account?"
+msgstr ""
+
+#: templates/admin/login.html:47
+msgid "Log in"
+msgstr ""
+
+#: templates/admin/login.html:55
+msgid "Forgotten your password or username?"
+msgstr ""
+
+#: templates/admin/login.html:63
+msgid "Cada puntada cuenta"
 msgstr ""
 
 #: templates/admin/orders/deliver_intermediate.html:6

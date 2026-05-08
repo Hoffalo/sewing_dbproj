@@ -13,6 +13,13 @@ from django.db.models import F, Q
 from django.utils.translation import gettext_lazy as _
 
 from apps.customers.models import Customer
+from apps.orders.money import format_money
+
+
+class Currency(models.TextChoices):
+    EUR = "EUR", _("Euro (€)")
+    COP = "COP", _("Peso colombiano ($)")
+    USD = "USD", _("US Dollar ($)")
 
 
 class Order(models.Model):
@@ -54,6 +61,13 @@ class Order(models.Model):
         db_index=True,
         verbose_name=_("Status"),
     )
+    currency = models.CharField(
+        max_length=3,
+        choices=Currency.choices,
+        default=Currency.EUR,
+        db_index=True,
+        verbose_name=_("Currency"),
+    )
     total_price = models.DecimalField(
         max_digits=10,
         decimal_places=2,
@@ -77,7 +91,7 @@ class Order(models.Model):
 
     def __str__(self) -> str:
         if self.pk:
-            return f"#{self.pk} — {self.customer}"
+            return f"#{self.pk} — {self.customer} — {format_money(self.total_price, self.currency)}"
         return str(_("(unsaved order)"))
 
 
@@ -196,6 +210,13 @@ class Material(models.Model):
         decimal_places=2,
         verbose_name=_("Cost per unit"),
     )
+    currency = models.CharField(
+        max_length=3,
+        choices=Currency.choices,
+        default=Currency.EUR,
+        db_index=True,
+        verbose_name=_("Currency"),
+    )
 
     class Meta:
         verbose_name = _("Material")
@@ -246,3 +267,18 @@ class OrderItemMaterial(models.Model):
 
     def __str__(self) -> str:
         return f"{self.order_item_id}: {self.material} ({self.quantity_used})"
+
+    def clean(self):
+        super().clean()
+        if (
+            getattr(self, "material_id", None)
+            and getattr(self, "order_item_id", None)
+            and getattr(self.order_item, "order_id", None)
+        ):
+            order_cur = self.order_item.order.currency
+            mat_cur = self.material.currency
+            if order_cur != mat_cur:
+                raise ValidationError(
+                    _("Material currency (%(m)s) must match order currency (%(o)s)"),
+                    params={"m": mat_cur, "o": order_cur},
+                )
